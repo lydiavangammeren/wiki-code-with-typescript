@@ -1,0 +1,18 @@
+.draft {
+    background: white;
+    transition: box-shadow 0.1s ease-in;
+    padding: 1rem 2rem;
+}
+
+.draft h2 {
+    margin-top: 0rem;
+}
+
+.draft:hover {
+    box-shadow: 1px 1px 3px #aaa;
+
+}
+
+.draft + .draft {
+    margin-top: 2rem;
+}
