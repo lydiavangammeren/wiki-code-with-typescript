@@ -20,6 +20,7 @@ export default function PostDetails({
   async function publishPost(postId: string) {
     await fetch(`http://localhost:3000/api/posts/${postId}`, {
       method: "PUT",
+      mode: 'cors'
     });
     router.refresh();
     router.push("/");
