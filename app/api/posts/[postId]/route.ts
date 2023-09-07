@@ -8,7 +8,7 @@ interface Params {
 
 // GET api/posts/:postId
 export async function GET(request: Request, {params} : Params) {
-    const postId = Number(params.postId);
+    const postId = params.postId;
     const post = await prisma.post.findUnique({
       where: {
         id: postId,
