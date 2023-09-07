@@ -12,7 +12,7 @@ export default function SignUp() {
     const data = {name, email}
     if (name && email) {
         await prisma.user.create({ data });
-        redirect('/')
+        redirect('/create')
     }
 
   }

@@ -14,6 +14,7 @@ export default function PostDetails({
   published,
   content,
   title,
+  updatedAt
 }: Props) {
   const router = useRouter();
   async function publishPost(postId: number) {
@@ -38,6 +39,7 @@ export default function PostDetails({
       <section className={styles.section}>
         <Markdown>{content || ""}</Markdown>
       </section>
+      <p>Last modified on: {String(updatedAt)}</p>
       {!published && (
         <button
           className={styles.button}
