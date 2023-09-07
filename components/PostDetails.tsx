@@ -14,13 +14,12 @@ export default function PostDetails({
   published,
   content,
   title,
-  
 }: Props) {
   const router = useRouter();
   async function publishPost(postId: string) {
     await fetch(`http://localhost:3000/api/posts/${postId}`, {
       method: "PUT",
-      mode: 'cors'
+      mode: "cors",
     });
     router.refresh();
     router.push("/");
@@ -29,6 +28,7 @@ export default function PostDetails({
   async function deletePost(postId: string) {
     await fetch(`http://localhost:3000/api/posts/${postId}`, {
       method: "DELETE",
+      mode: "cors",
     });
     router.refresh();
     router.push("/");
@@ -39,7 +39,7 @@ export default function PostDetails({
       <p>by {author?.name || "anonymous"}</p>
       <section className={styles.section}>
         <Markdown>{content || ""}</Markdown>
-      </section>      
+      </section>
       {!published && (
         <button
           className={styles.button}
