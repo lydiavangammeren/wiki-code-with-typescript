@@ -14,10 +14,10 @@ export default function PostDetails({
   published,
   content,
   title,
-  updatedAt
+  
 }: Props) {
   const router = useRouter();
-  async function publishPost(postId: number) {
+  async function publishPost(postId: string) {
     await fetch(`http://localhost:3000/api/posts/${postId}`, {
       method: "PUT",
     });
@@ -25,7 +25,7 @@ export default function PostDetails({
     router.push("/");
   }
 
-  async function deletePost(postId: number) {
+  async function deletePost(postId: string) {
     await fetch(`http://localhost:3000/api/posts/${postId}`, {
       method: "DELETE",
     });
@@ -38,8 +38,7 @@ export default function PostDetails({
       <p>by {author?.name || "anonymous"}</p>
       <section className={styles.section}>
         <Markdown>{content || ""}</Markdown>
-      </section>
-      <p>Last modified on: {String(updatedAt)}</p>
+      </section>      
       {!published && (
         <button
           className={styles.button}
