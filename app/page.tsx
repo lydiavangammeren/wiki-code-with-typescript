@@ -5,8 +5,7 @@ export const revalidate = 0;
 
 export default async function HomePage() {
   const posts = await prisma.post.findMany({
-    where: { published: true },
-    orderBy: {updatedAt: "desc"},
+    where: { published: true },    
     include: { author: true },
   });
   return (
