@@ -39,5 +39,5 @@ return new Response("success", {status: 200});
 export async function DELETE(request: Request, {params} : Params) {
     const postId = params.postId;
     await prisma.post.delete({where: {id: postId}});
-    return new Response("success", {status: 200});
+    return new Response("success", {headers: {'Access-Control-Allow-Origin': '*'}, status: 200});
 }
