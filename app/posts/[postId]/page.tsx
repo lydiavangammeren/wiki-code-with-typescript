@@ -12,7 +12,7 @@ export default async function PostPage({params}: Props) {
     
     const post = await prisma.post.findUnique({
         where: {
-            id: Number(params.postId)
+            id: params.postId
         },
         include: {
             author: true
