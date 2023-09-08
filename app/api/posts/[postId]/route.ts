@@ -31,7 +31,7 @@ data: {
     published: true,
 }
 })
-return new Response("success", {status: 200});
+return new Response("success", {headers: {'Access-Control-Allow-Origin': '*'}, status: 200});
 }
 
 // Deleting a post

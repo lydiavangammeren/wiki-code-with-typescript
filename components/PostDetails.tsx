@@ -17,7 +17,7 @@ export default function PostDetails({
 }: Props) {
   const router = useRouter();
   async function publishPost(postId: string) {
-    await fetch(`http://localhost:3000/api/posts/${postId}`, {
+    await fetch(`/api/posts/${postId}`, {
       method: "PUT",
       mode: "cors",
     });
