@@ -20,6 +20,7 @@ export default function PostDetails({
     await fetch(`/api/posts/${postId}`, {
       method: "PUT",
       mode: "cors",
+      next: { revalidate: 0 }
     });
     router.refresh();
     router.push("/");
@@ -29,6 +30,7 @@ export default function PostDetails({
     await fetch(`/api/posts/${postId}`, {
       method: "DELETE",
       mode: "cors",
+      next: { revalidate: 0 }
     });
     router.refresh();
     router.push("/");
