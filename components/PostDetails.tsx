@@ -26,7 +26,7 @@ export default function PostDetails({
   }
 
   async function deletePost(postId: string) {
-    await fetch(`http://localhost:3000/api/posts/${postId}`, {
+    await fetch(`/api/posts/${postId}`, {
       method: "DELETE",
       mode: "cors",
     });
