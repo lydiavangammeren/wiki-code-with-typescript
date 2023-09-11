@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
+import { userInfo } from 'os';
 
 const Navbar: React.FC = () => {
   const router = useRouter();
@@ -113,7 +114,7 @@ const Navbar: React.FC = () => {
     );
   }
 
-  if (session) {
+  if (session && session.user) {
     left = (
       <div className="left">
         <Link legacyBehavior href="/">
