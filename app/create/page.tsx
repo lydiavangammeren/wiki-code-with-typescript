@@ -2,17 +2,20 @@ import Link from "next/link";
 import styles from "./CreatePost.module.css"
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import { getSession } from 'next-auth/react';
 
 export default function CreatePostPage() {
 
     async function submitAction(formData: FormData) {
         "use server"
         const title = String(formData.get('title'));
-        const email = String(formData.get('email'));
+        // const email = String(formData.get('email'));
         const content = String(formData.get('content'));
-        if (title && email && content) {
+        const session = await getSession();
+        if (title && content) {
             await prisma.post.create({
-                data: {title, content, author: {connect: {email}}}
+                data: {title, content, author: { connect: { email: session?.user?.email || 
+                "" } },}
             })
         }
         redirect('/drafts');
@@ -22,7 +25,7 @@ export default function CreatePostPage() {
             <form action={submitAction}>
                 <h1>Create Draft</h1>
                 <input name="title" placeholder="Title" type="text"/>
-                <input name="email" placeholder="Author (email address)" type="email"/>
+                {/* <input name="email" placeholder="Author (email address)" type="email"/> */}
                 <textarea name="content" cols={50} rows={8} placeholder="Content"/>
                 <button type="submit">Create Post</button>
                 <Link href="/" className={styles.back}>or Cancel</Link>
