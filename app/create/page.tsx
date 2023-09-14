@@ -2,18 +2,16 @@ import Link from "next/link";
 import styles from "./CreatePost.module.css"
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 
 export default function CreatePostPage() {
 
-    const { data: session, status } = useSession();
-    
     async function submitAction(formData: FormData) {
         "use server"
         const title = String(formData.get('title'));
         // const email = String(formData.get('email'));
         const content = String(formData.get('content'));
-       
+        const session = await getSession();
         if (title && content) {
             await prisma.post.create({
                 data: {title, content, author: { connect: { email: session?.user?.email || 
