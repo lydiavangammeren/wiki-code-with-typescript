@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./CreatePost.module.css"
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { getSession } from 'next-auth/react';
+import { getServerSession } from "next-auth/next"
 
 export default function CreatePostPage() {
 
@@ -11,7 +11,7 @@ export default function CreatePostPage() {
         const title = String(formData.get('title'));
         // const email = String(formData.get('email'));
         const content = String(formData.get('content'));
-        const session = await getSession();
+        const session = await getServerSession();
         if (title && content) {
             await prisma.post.create({
                 data: {title, content, author: { connect: { email: session?.user?.email || 
