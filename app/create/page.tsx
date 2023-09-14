@@ -11,9 +11,12 @@ export default function CreatePostPage() {
     // const email = String(formData.get('email'));
     const content = String(formData.get("content"));
     const session = await getServerSession();
-    if (!session || !session.user) {
-      throw new Error(`No authenticated user`);
+    if (!session ) {
+      throw new Error(`No session`);
     }
+    if (!session.user) {
+        throw new Error(`No authenticated user`);
+      }
     if (!session.user.email) {
       throw new Error(`User needs email to post`);
     }
