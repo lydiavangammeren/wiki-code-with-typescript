@@ -3,6 +3,7 @@ import styles from "./CreatePost.module.css";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export default function CreatePostPage() {
   async function submitAction(formData: FormData) {
@@ -10,7 +11,7 @@ export default function CreatePostPage() {
     const title = String(formData.get("title"));
     // const email = String(formData.get('email'));
     const content = String(formData.get("content"));
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session ) {
       throw new Error(`No session`);
     }
